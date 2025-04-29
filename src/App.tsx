@@ -1,7 +1,15 @@
-import React from "react";
+import { Products } from "./components/products/Products";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <div>
+      <Header />
+      <Products />
+      <Footer />
+    </div>
+  );
 }
 
 export default App
