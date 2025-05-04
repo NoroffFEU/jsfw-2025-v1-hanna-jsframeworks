@@ -1,3 +1,4 @@
+import { Card, CardMedia, CardContent, Typography } from "@mui/material";
 import { TProduct } from "../../types/products";
 
 type ProductProps = {
@@ -6,13 +7,36 @@ type ProductProps = {
 
 function Product({ product }: ProductProps) {
   return (
-    <div>
-      <h2>{product.title}</h2>
-      <img src={product.image.url} alt={product.image.alt} />
-      <p>Price: {product.price}</p>
-      <p>Discounted Price: ${product.discountedPrice}</p>
-      <p>Rating: {product.rating}/5</p>
-    </div>
+    <Card>
+      <CardMedia
+        component="img"
+        height="300"
+        image={product.image.url}
+        alt={product.image.alt}
+      />
+      <CardContent>
+        <Typography variant="h6">{product.title}</Typography>
+        <Typography variant="body2" color="text.secondary">
+          {product.description}
+        </Typography>
+        <Typography variant="subtitle1">
+          {product.discountedPrice ? (
+            <>
+              <span
+                style={{ textDecoration: "line-through", marginRight: "8px" }}
+              >
+                ${product.price}
+              </span>
+              <span style={{ color: "#00796b" }}>
+                ${product.discountedPrice}
+              </span>
+            </>
+          ) : (
+            <span>${product.price}</span>
+          )}
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 
