@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { ONLINE_SHOP_API_URL } from "../../common/common";
-import { Product } from "../Product/Product";
 import { TProduct } from "../../types/products";
+import { ProductsList } from "../ProductsList/ProductsList";
 
-
-function Products () {
+function Products() {
   const [products, setProducts] = useState<TProduct[]>([]);
-
 
   useEffect(() => {
     async function getProducts() {
@@ -20,14 +18,11 @@ function Products () {
     }
 
     getProducts();
-  }, []); 
-
+  }, []);
 
   return (
     <div>
-      {products.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
+      <ProductsList products={products} />
     </div>
   );
 }
