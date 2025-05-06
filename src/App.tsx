@@ -5,22 +5,17 @@ import { Footer } from "./components/Footer/Footer";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "./theme";
 import { Routes, Route } from "react-router-dom";
-import { Box } from "@mui/material";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
-        <div>
-          <Header />
-          <Box sx={{ margin: "0 auto", padding: "2rem" }}>
-            <Routes>
-              <Route path="/" element={<Products />} />
-              <Route path="/cart" element={<ShoppingCart />} />
-            </Routes>
-          </Box>
-          <Footer />
-        </div>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/cart" element={<ShoppingCart />} />
+        </Routes>
+        <Footer />
       </CssBaseline>
     </ThemeProvider>
   );

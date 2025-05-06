@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ONLINE_SHOP_API_URL } from "../../common/common";
 import { TProduct } from "../../types/products";
 import { ProductsList } from "../ProductsList/ProductsList";
+import { PageLayout } from "../PageLayout/PageLayout";
 
 function Products() {
   const [products, setProducts] = useState<TProduct[]>([]);
@@ -21,9 +22,9 @@ function Products() {
   }, []);
 
   return (
-    <div>
+    <PageLayout>
       <ProductsList products={products} />
-    </div>
+    </PageLayout>
   );
 }
 
