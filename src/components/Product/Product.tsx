@@ -1,5 +1,12 @@
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+} from "@mui/material";
 import { TProduct } from "../../types/products";
+import { Link } from "react-router-dom";
 
 type ProductProps = {
   product: TProduct;
@@ -35,6 +42,14 @@ function Product({ product }: ProductProps) {
             <span>${product.price}</span>
           )}
         </Typography>
+        <Button
+          variant="contained"
+          component={Link}
+          to={`/product/${product.id}`}
+          sx={{ mt: 2 }}
+        >
+          More Info
+        </Button>
       </CardContent>
     </Card>
   );

@@ -8,7 +8,7 @@ export type TProductReview = {
   username: string;
   rating: number;
   description: string;
-}
+};
 
 export type TProduct = {
   id: string;
@@ -19,10 +19,5 @@ export type TProduct = {
   image: TProductImage;
   rating: number;
   tags: string[];
-  reviews: TProductReview;
+  reviews: TProductReview[];
 };
-
-
-
-
-
