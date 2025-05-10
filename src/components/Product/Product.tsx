@@ -12,6 +12,16 @@ type ProductProps = {
   product: TProduct;
 };
 
+/**
+ * Renders a single product card with image, title, description, and price.
+ * If a discounted price is available, it is displayed alongside the original price (with line-through)
+ * Includes a button that links to the detailed product view.
+ *
+ * @component
+ * @param {Object} props
+ * @param {TProduct} props.product - The product data to display
+ * @returns {JSX.Element} A styled product card
+ */
 function Product({ product }: ProductProps) {
   return (
     <Card>

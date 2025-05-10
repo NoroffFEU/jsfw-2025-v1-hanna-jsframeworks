@@ -6,6 +6,14 @@ type TProductListProps = {
   products: TProduct[];
 };
 
+/**
+ * Displays a responsive grid of product cards using Material UI.
+ *
+ * @component
+ * @param {Object} props
+ * @param {TProduct[]} props.products - Array of product objects to display
+ * @returns {JSX.Element} Grid layout of product cards
+ */
 function ProductsList({ products }: TProductListProps) {
   return (
     <Grid container spacing={3}>

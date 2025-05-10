@@ -12,6 +12,15 @@ type Props = {
   product: TProduct;
 };
 
+/**
+ * Displays detailed information for a single product, including its image, title, description, pricing and reviews
+ *
+ * @component
+ * @param {Object} props - The component props
+ * @param {TProduct} props.product - The product object containing all the displayed information
+ * @returns {JSX.Element} A styled card displayin full product details
+ */
+
 function ProductInfo({ product }: Props) {
   return (
     <Card sx={{ maxWidth: 1200, margin: "auto", mt: 4 }}>

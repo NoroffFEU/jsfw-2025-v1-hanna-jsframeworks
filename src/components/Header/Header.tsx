@@ -2,6 +2,12 @@ import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 
+/**
+ * Displays the top navigation bar with a logo link and cart icon.
+ *
+ * @component
+ * @returns {JSXElement} The header navigation component
+ */
 function Header() {
   return (
     <AppBar position="static" sx={{ backgroundColor: "#001f3f" }}>

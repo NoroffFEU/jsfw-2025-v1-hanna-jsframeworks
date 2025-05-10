@@ -6,6 +6,17 @@ import { Loader } from "../Loader/Loader";
 import { PageLayout } from "../PageLayout/PageLayout";
 import { ProductInfo } from "../ProductInfo/ProductInfo";
 
+/**
+ * Fetches and displays detailed information about a single product
+ * based on the product ID from the URL.
+ *
+ * Shows a loading spinner while fetching, handles errors with a user-facing alert,
+ * and displays either the product info, a not-found message, or a loader.
+ *
+ * @component
+ * @returns {JSX.Element} The detailed product page
+ */
+
 function ProductDetails() {
   const { id } = useParams();
   const [product, setProduct] = useState<TProduct | null>(null);
