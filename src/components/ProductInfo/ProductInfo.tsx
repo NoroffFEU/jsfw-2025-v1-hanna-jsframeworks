@@ -1,5 +1,12 @@
 import { TProduct } from "../../types/products";
-import { Box, Typography } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  Box,
+  Typography,
+  CardContent,
+  Divider,
+} from "@mui/material";
 
 type Props = {
   product: TProduct;
@@ -7,51 +14,67 @@ type Props = {
 
 function ProductInfo({ product }: Props) {
   return (
-    <Box>
-      <Typography variant="h4" gutterBottom>
-        {product.title}
-      </Typography>
-      <img
-        src={product.image.url}
-        alt={product.image.alt}
-        style={{ width: "100%", maxWidth: "500px", marginBottom: "1rem" }}
-      />
-      <Typography variant="body1" paragraph>
-        {product.description}
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Price:{" "}
-        {product.discountedPrice < product.price ? (
-          <>
-            <s>${product.price}</s>{" "}
-            <span style={{ color: "#00796b" }}>${product.discountedPrice}</span>
-          </>
-        ) : (
-          <span>${product.price}</span>
-        )}
-      </Typography>
+    <Card sx={{ maxWidth: 1200, margin: "auto", mt: 4 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+        }}
+      >
+        <CardMedia
+          component="img"
+          sx={{
+            width: { xs: "100%", md: 400 },
+            height: { xs: 300, md: "auto" },
+            objectFit: "cover",
+          }}
+          image={product.image.url}
+          alt={product.image.alt}
+        />
 
-      {product.tags.length > 0 && (
-        <Box mt={2}>
-          <Typography variant="subtitle1">Tags:</Typography>
-          <Typography variant="body2">{product.tags.join(", ")}</Typography>
-        </Box>
-      )}
+        <CardContent sx={{ flex: 1 }}>
+          <Typography variant="h4" gutterBottom>
+            {product.title}
+          </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph>
+            {product.description}
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            {product.discountedPrice ? (
+              <>
+                <span
+                  style={{ textDecoration: "line-through", marginRight: "8px" }}
+                >
+                  ${product.price}
+                </span>
+                <span style={{ color: "#00796b" }}>
+                  ${product.discountedPrice}
+                </span>
+              </>
+            ) : (
+              <span>${product.price}</span>
+            )}
+          </Typography>
 
-      {product.reviews.length > 0 && (
-        <Box mt={3}>
-          <Typography variant="subtitle1">Reviews:</Typography>
-          <ul>
-            {product.reviews.map((review) => (
-              <li key={review.id}>
-                <strong>{review.username}</strong> ({review.rating}/5):{" "}
-                {review.description}
-              </li>
-            ))}
-          </ul>
-        </Box>
-      )}
-    </Box>
+          {product.reviews?.length > 0 && (
+            <>
+              <Divider sx={{ my: 3 }} />
+              <Typography variant="h6" gutterBottom>
+                Reviews
+              </Typography>
+              {product.reviews.map((review) => (
+                <Box key={review.id} sx={{ mb: 2 }}>
+                  <Typography variant="subtitle2">
+                    {review.username} – ⭐ {review.rating}
+                  </Typography>
+                  <Typography variant="body2">{review.description}</Typography>
+                </Box>
+              ))}
+            </>
+          )}
+        </CardContent>
+      </Box>
+    </Card>
   );
 }
 
