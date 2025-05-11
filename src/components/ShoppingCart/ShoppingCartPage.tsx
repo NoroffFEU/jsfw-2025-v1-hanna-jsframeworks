@@ -17,7 +17,7 @@ function ShoppingCart() {
         <Card
           key={product.id}
           sx={{
-            maxWidth: { xs: 300, sm: "100%", md: 400 },
+            maxWidth: { xs: 300, sm: 550 },
             margin: "auto",
             mt: 4,
           }}
@@ -26,7 +26,7 @@ function ShoppingCart() {
             sx={{
               display: "flex",
               justifyContent: "center",
-              flexDirection: { xs: "column", md: "row" },
+              flexDirection: { xs: "column", sm: "row" },
             }}
           >
             <CardMedia
@@ -71,7 +71,6 @@ function ShoppingCart() {
           </Box>
         </Card>
       ))}
-      ,
     </>
   );
 }

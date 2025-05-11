@@ -1,17 +1,41 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { CartItem, CartContextType } from "../../types/cart";
 import { TProduct } from "../../types/products";
+
+const STORAGE_KEY = "my_cart";
 
 // Create context for cart site
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 /**
  * Provides cart functionality and state to its child components.
+ *
  * @param {Object} props
  * @param {ReactNode} props.children - Components that will have access to the cart context.
  */
 function CartProvider({ children }: { children: ReactNode }) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    try {
+      const json = localStorage.getItem(STORAGE_KEY);
+      return json ? JSON.parse(json) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cartItems));
+    } catch {
+      console.error("Failed to load cart from local storage");
+    }
+  }, [cartItems]);
 
   /**
    * Adds a product to the cart or increases its quantity if it already exists.
