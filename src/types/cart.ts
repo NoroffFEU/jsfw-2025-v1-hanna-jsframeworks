@@ -6,7 +6,6 @@ export interface CartItem {
   quantity: number;
 }
 
-// Used in CartContext.tsx
 export interface CartContextType {
   cartItems: CartItem[];
   addToCart: (product: TProduct) => void;

@@ -27,6 +27,9 @@ type Props = {
 function ProductInfo({ product }: Props) {
   const { addToCart } = useCart();
 
+  /**
+   * Handles adding the product to the cart and shows a toast notification.
+   */
   const handleAddToCart = () => {
     if (product) {
       addToCart(product);
@@ -79,7 +82,13 @@ function ProductInfo({ product }: Props) {
             variant="contained"
             color="primary"
             onClick={handleAddToCart}
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              backgroundColor: "#001f3f",
+              "&:hover": {
+                backgroundColor: "#003366",
+              },
+            }}
           >
             Add to Cart
           </Button>

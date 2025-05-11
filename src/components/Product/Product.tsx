@@ -56,7 +56,14 @@ function Product({ product }: ProductProps) {
           variant="contained"
           component={Link}
           to={`/product/${product.id}`}
-          sx={{ mt: 2 }}
+          sx={{
+            mt: 2,
+            mb: 2,
+            backgroundColor: "#001f3f",
+            "&:hover": {
+              backgroundColor: "#003366",
+            },
+          }}
         >
           More Info
         </Button>

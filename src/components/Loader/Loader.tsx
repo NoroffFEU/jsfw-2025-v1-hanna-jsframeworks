@@ -9,8 +9,8 @@ import { Box, CircularProgress } from "@mui/material";
  */
 function Loader() {
   return (
-    <Box>
-      <CircularProgress />
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <CircularProgress sx={{ color: "#001f3f" }} />
     </Box>
   );
 }
