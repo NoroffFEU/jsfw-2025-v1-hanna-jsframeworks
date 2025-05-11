@@ -1,15 +1,44 @@
 import {
   Typography,
+  TextField,
   Card,
   Box,
   CardMedia,
   CardContent,
   Divider,
+  IconButton,
+  Button,
 } from "@mui/material";
 import { useCart } from "../CartContext/CartContext";
+import { toast } from "react-toastify";
+import { DeleteOutlined } from "@mui/icons-material";
 
 function ShoppingCart() {
-  const { cartItems } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
+
+  const calculateTotal = () =>
+    cartItems.reduce((acc, { product, quantity }) => {
+      const price = product.discountedPrice ?? product.price;
+      return acc + price * quantity;
+    }, 0);
+
+  const handleRemove = (productId: string) => {
+    removeFromCart(productId);
+    toast.info("Item removed from cart");
+  };
+
+  const handleCheckout = () => {
+    clearCart();
+    toast.success("Checkout successful!");
+  };
+
+  if (cartItems.length === 0) {
+    return (
+      <Typography variant="h5" align="center" sx={{ mt: 4 }}>
+        Your cart is empty.
+      </Typography>
+    );
+  }
 
   return (
     <>
@@ -47,30 +76,52 @@ function ShoppingCart() {
                 Quantity: {quantity}
               </Typography>
 
-              <Typography variant="h6" sx={{ mb: 2 }}>
-                {product.discountedPrice ? (
-                  <>
-                    <span
-                      style={{
-                        textDecoration: "line-through",
-                        marginRight: "8px",
-                      }}
-                    >
-                      ${product.price}
-                    </span>
-                    <span style={{ color: "#00796b" }}>
-                      ${product.discountedPrice}
-                    </span>
-                  </>
-                ) : (
-                  <span>${product.price}</span>
-                )}
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Price: ${product.discountedPrice ?? product.price}
               </Typography>
+
+              <Box>
+                <TextField
+                  type="number"
+                  label="Qty"
+                  variant="outlined"
+                  size="small"
+                  value={quantity}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value, 10);
+                    if (val > 0) updateQuantity(product.id, val);
+                  }}
+                  inputProps={{ min: 1, style: { textAlign: "center" } }}
+                  sx={{ width: 80, mr: 2 }}
+                />
+                <IconButton
+                  onClick={() => handleRemove(product.id)}
+                  aria-label="Remove Item"
+                >
+                  <DeleteOutlined />
+                </IconButton>
+              </Box>
               <Divider sx={{ my: 2 }} />
             </CardContent>
           </Box>
         </Card>
       ))}
+
+      <Box sx={{ maxWidth: 550, margin: "auto", mt: 4, textAlign: "center" }}>
+        <Typography variant="h6" sx={{ mb: 1 }}>
+          Total: ${calculateTotal().toFixed(2)}
+        </Typography>
+        <Button
+          variant="contained"
+          onClick={handleCheckout}
+          sx={{
+            backgroundColor: "#001f3f",
+            "&:hover": { backgroundColor: "#003366" },
+          }}
+        >
+          Checkout
+        </Button>
+      </Box>
     </>
   );
 }
