@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import { TProduct } from "../../types/products";
 import { ONLINE_SHOP_API_URL } from "../../common/common";
 import { Loader } from "../Loader/Loader";
@@ -41,6 +42,7 @@ function ProductDetails() {
 
   return (
     <PageLayout>
+      <ToastContainer />
       {loading ? (
         <Loader />
       ) : product ? (

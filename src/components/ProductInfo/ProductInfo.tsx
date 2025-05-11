@@ -1,4 +1,6 @@
+import { toast } from "react-toastify";
 import { TProduct } from "../../types/products";
+import { useCart } from "../CartContext/CartContext";
 import {
   Card,
   CardMedia,
@@ -6,6 +8,7 @@ import {
   Typography,
   CardContent,
   Divider,
+  Button,
 } from "@mui/material";
 
 type Props = {
@@ -22,6 +25,14 @@ type Props = {
  */
 
 function ProductInfo({ product }: Props) {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+      toast.success("Product added to cart!");
+    }
+  };
   return (
     <Card sx={{ maxWidth: 1200, margin: "auto", mt: 4 }}>
       <Box
@@ -64,6 +75,14 @@ function ProductInfo({ product }: Props) {
               <span>${product.price}</span>
             )}
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddToCart}
+            sx={{ mb: 2 }}
+          >
+            Add to Cart
+          </Button>
 
           {product.reviews?.length > 0 && (
             <>
