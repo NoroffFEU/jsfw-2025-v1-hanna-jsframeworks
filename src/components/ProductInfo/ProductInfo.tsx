@@ -63,7 +63,7 @@ function ProductInfo({ product }: Props) {
             {product.description}
           </Typography>
           <Typography variant="h6" sx={{ mb: 2 }}>
-            {product.discountedPrice ? (
+            {product.discountedPrice < product.price ? (
               <>
                 <span
                   style={{ textDecoration: "line-through", marginRight: "8px" }}

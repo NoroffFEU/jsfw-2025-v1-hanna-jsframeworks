@@ -37,7 +37,7 @@ function Product({ product }: ProductProps) {
           {product.description}
         </Typography>
         <Typography variant="subtitle1">
-          {product.discountedPrice ? (
+          {product.discountedPrice < product.price ? (
             <>
               <span
                 style={{ textDecoration: "line-through", marginRight: "8px" }}
