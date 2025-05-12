@@ -11,10 +11,12 @@ import {
 } from "@mui/material";
 import { useCart } from "../CartContext/CartContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@mui/icons-material";
 
 function ShoppingCart() {
   const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
+  const navigate = useNavigate();
 
   const calculateTotal = () =>
     cartItems.reduce((acc, { product, quantity }) => {
@@ -28,8 +30,11 @@ function ShoppingCart() {
   };
 
   const handleCheckout = () => {
-    clearCart();
-    toast.success("Checkout successful!");
+    toast.success("Checkout was successful! Redirecting....");
+    setTimeout(() => {
+      clearCart();
+      navigate("/checkout-success");
+    }, 2000);
   };
 
   if (cartItems.length === 0) {

@@ -31,7 +31,7 @@ function Product({ product }: ProductProps) {
         image={product.image.url}
         alt={product.image.alt}
       />
-      <CardContent>
+      <CardContent sx={{ height: 200 }}>
         <Typography variant="h6">{product.title}</Typography>
         <Typography variant="body2" color="text.secondary">
           {product.description}
