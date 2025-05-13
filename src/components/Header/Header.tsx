@@ -24,8 +24,19 @@ function Header() {
     <AppBar position="static" sx={{ backgroundColor: "#001f3f" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box component={Link} to="/" sx={{ textDecoration: "none" }}>
-          <Typography variant="h5" sx={{ color: "white" }}>
-            Logo
+          <Typography
+            variant="h5"
+            sx={{
+              p: 0.8,
+              color: "white",
+              "&:hover": {
+                backgroundColor: "rgba(255, 255, 255, 0.2)",
+                borderRadius: 10,
+                color: "white",
+              },
+            }}
+          >
+            Luxo
           </Typography>
         </Box>
         <IconButton

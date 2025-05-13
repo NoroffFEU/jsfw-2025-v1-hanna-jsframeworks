@@ -39,9 +39,35 @@ function ShoppingCart() {
 
   if (cartItems.length === 0) {
     return (
-      <Typography variant="h5" align="center" sx={{ mt: 4 }}>
-        Your cart is empty.
-      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flex: "column",
+          justifyContent: "center",
+          textAlign: "center",
+          mt: 4,
+        }}
+      >
+        <Card sx={{ p: 4 }}>
+          <Typography variant="h5" align="center" sx={{ mt: 2, mb: 2 }}>
+            Your cart is empty.
+          </Typography>
+          <Button
+            onClick={() => navigate("/")}
+            variant="contained"
+            color="primary"
+            sx={{
+              mb: 2,
+              backgroundColor: "#001f3f",
+              "&:hover": {
+                backgroundColor: "#003366",
+              },
+            }}
+          >
+            Go Shopping
+          </Button>
+        </Card>
+      </Box>
     );
   }
 

@@ -1,5 +1,6 @@
 import { Products } from "./components/Products/Products";
 import { ShoppingCart } from "./components/ShoppingCart/ShoppingCartPage";
+import { ContactPage } from "./components/ContactPage/ContactPage";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
@@ -27,6 +28,7 @@ function App() {
               <Route path="/cart" element={<ShoppingCart />} />
               <Route path="/product/:id" element={<ProductDetails />} />
               <Route path="/checkout-success" element={<CheckOutSuccess />} />
+              <Route path="/contact" element={<ContactPage />} />
             </Routes>
           </Box>
           <Footer />
