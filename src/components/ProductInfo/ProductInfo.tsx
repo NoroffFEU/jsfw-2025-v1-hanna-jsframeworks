@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { TProduct } from "../../types/products";
 import { useCart } from "../CartContext/CartContext";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardMedia,
@@ -9,6 +10,8 @@ import {
   CardContent,
   Divider,
   Button,
+  Stack,
+  Chip,
 } from "@mui/material";
 
 type Props = {
@@ -26,6 +29,7 @@ type Props = {
 
 function ProductInfo({ product }: Props) {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   /**
    * Handles adding the product to the cart and shows a toast notification.
@@ -59,7 +63,14 @@ function ProductInfo({ product }: Props) {
           <Typography variant="h4" gutterBottom>
             {product.title}
           </Typography>
-          <Typography variant="body1" color="text.secondary" paragraph>
+          {product.tags.length > 0 && (
+            <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: "wrap" }}>
+              {product.tags.map((tag) => (
+                <Chip key={tag} label={tag} variant="outlined" />
+              ))}
+            </Stack>
+          )}
+          <Typography variant="body1" color="text.secondary">
             {product.description}
           </Typography>
           <Typography variant="h6" sx={{ mb: 2 }}>
@@ -92,6 +103,22 @@ function ProductInfo({ product }: Props) {
           >
             Add to Cart
           </Button>
+          <Button
+            variant="outlined"
+            onClick={() => navigate("/")}
+            sx={{
+              mb: 2,
+              color: "#001f3f",
+              borderColor: "#001f3f",
+              backgroundColor: "#ffffff",
+              "&:hover": {
+                backgroundColor: "#aad8ff",
+                borderColor: "#aad8ff",
+              },
+            }}
+          >
+            More Shopping
+          </Button>
 
           {product.reviews?.length > 0 && (
             <>
@@ -102,7 +129,7 @@ function ProductInfo({ product }: Props) {
               {product.reviews.map((review) => (
                 <Box key={review.id} sx={{ mb: 2 }}>
                   <Typography variant="subtitle2">
-                    {review.username} – ⭐ {review.rating}
+                    {review.username} – {review.rating} ⭐
                   </Typography>
                   <Typography variant="body2">{review.description}</Typography>
                 </Box>
