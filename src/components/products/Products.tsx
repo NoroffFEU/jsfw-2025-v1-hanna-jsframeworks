@@ -4,7 +4,8 @@ import { TProduct } from "../../types/products";
 import { ProductsList } from "../ProductsList/ProductsList";
 import { Loader } from "../Loader/Loader";
 import { PageLayout } from "../PageLayout/PageLayout";
-import { Typography } from "@mui/material";
+import { SearchBar } from "../SearchBar/SearchBar";
+import { Typography, Box } from "@mui/material";
 
 /**
  * Fetches and displays a list of products from the online shop API.
@@ -18,6 +19,8 @@ import { Typography } from "@mui/material";
 
 function Products() {
   const [products, setProducts] = useState<TProduct[]>([]);
+  const [filtered, setFiltered] = useState<TProduct[]>([]);
+  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -26,12 +29,8 @@ function Products() {
       try {
         const response = await fetch(ONLINE_SHOP_API_URL);
         const json = await response.json();
-
-        if (json.data && Array.isArray(json.data)) {
-          setProducts(json.data);
-        } else {
-          throw new Error("No data returned");
-        }
+        setProducts(json.data);
+        setFiltered(json.data);
         // eslint-disable-next-line no-unused-vars
       } catch (error) {
         setError(true);
@@ -43,15 +42,48 @@ function Products() {
     getProducts();
   }, []);
 
+  useEffect(() => {
+    const lower = search.toLowerCase();
+    const matches = products.filter((product) =>
+      product.title.toLowerCase().includes(lower),
+    );
+    setFiltered(matches);
+  }, [search, products]);
+
   return (
     <PageLayout>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 1,
+        }}
+      >
+        <Box>
+          <Typography variant="h6" sx={{ color: "#001f3f" }}>
+            Showing Products
+          </Typography>
+        </Box>
+        <SearchBar value={search} onChange={setSearch} />
+      </Box>
+
       {loading && <Loader />}
+
       {!loading && error && (
         <Typography textAlign="center">
           Failed to load products. Please try again later.
         </Typography>
       )}
-      {!loading && !error && <ProductsList products={products} />}
+
+      {!loading && !error && filtered.length === 0 && (
+        <Typography textAlign="center" mt={4}>
+          No products match your search.
+        </Typography>
+      )}
+
+      {!loading && !error && <ProductsList products={filtered} />}
     </PageLayout>
   );
 }
