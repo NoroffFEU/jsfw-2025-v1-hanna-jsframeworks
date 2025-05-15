@@ -18,6 +18,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
  *
  * @param {Object} props
  * @param {ReactNode} props.children - Components that will have access to the cart context.
+ * @returns {JSX.Element} Provider component with cart context.
  */
 function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>(() => {

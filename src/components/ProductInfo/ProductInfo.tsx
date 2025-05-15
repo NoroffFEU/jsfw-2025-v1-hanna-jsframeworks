@@ -19,8 +19,15 @@ type Props = {
 };
 
 /**
- * Displays detailed information for a single product, including its image, title, description, pricing and reviews
+ * Displays detailed infor a single product, including:
  *
+ * - Image, title, description, tags, and pricing
+ * - Add to cart button with toast notification
+ * - Navigation back to the main shopping page
+ * - Optional review section if reviews are present
+ *
+ * Uses responsive layout via Material UI and shows pricing with
+ * discount styling when applicable.
  * @component
  * @param {Object} props - The component props
  * @param {TProduct} props.product - The product object containing all the displayed information
@@ -32,7 +39,7 @@ function ProductInfo({ product }: Props) {
   const navigate = useNavigate();
 
   /**
-   * Handles adding the product to the cart and shows a toast notification.
+   * Adds the product to the cart using the CartContext and displays a success toast notification
    */
   const handleAddToCart = () => {
     if (product) {
@@ -60,9 +67,7 @@ function ProductInfo({ product }: Props) {
         />
 
         <CardContent sx={{ flex: 1 }}>
-          <Typography variant="h4" gutterBottom>
-            {product.title}
-          </Typography>
+          <Typography variant="h4">{product.title}</Typography>
           {product.tags.length > 0 && (
             <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: "wrap" }}>
               {product.tags.map((tag) => (
@@ -95,6 +100,7 @@ function ProductInfo({ product }: Props) {
             onClick={handleAddToCart}
             sx={{
               mb: 2,
+              mr: 1,
               backgroundColor: "#001f3f",
               "&:hover": {
                 backgroundColor: "#003366",
@@ -123,9 +129,7 @@ function ProductInfo({ product }: Props) {
           {product.reviews?.length > 0 && (
             <>
               <Divider sx={{ my: 3 }} />
-              <Typography variant="h6" gutterBottom>
-                Reviews
-              </Typography>
+              <Typography variant="h6">Reviews</Typography>
               {product.reviews.map((review) => (
                 <Box key={review.id} sx={{ mb: 2 }}>
                   <Typography variant="subtitle2">

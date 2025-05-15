@@ -3,6 +3,12 @@ import { useForm } from "react-hook-form";
 import { Box, Typography, TextField, Button, Card } from "@mui/material";
 import { toast } from "react-toastify";
 
+/**
+ * Contact page component with form for user inquiries.
+ *
+ * @component
+ * @returns {JSX.Element} The contact page UI with validation and submit handling.
+ */
 export function ContactPage() {
   const {
     register,
@@ -11,6 +17,12 @@ export function ContactPage() {
     reset,
   } = useForm<ContactFormInputs>();
 
+  /**
+   * Handles form submission.
+   *
+   * @param {ContactFormInputs} data - The form data submitted by the user.
+   * @returns {Promise<void>}
+   */
   const onSubmit = async (data: ContactFormInputs) => {
     try {
       console.log("Sending message:", data);
@@ -28,7 +40,7 @@ export function ContactPage() {
         display: "flex",
         justifyContent: "center",
         backgroundColor: "#f5f5f5",
-        mt: 4,
+        m: 4,
       }}
     >
       <Card

@@ -28,8 +28,11 @@ function ProductDetails() {
         const response = await fetch(`${ONLINE_SHOP_API_URL}/${id}`);
         const json = await response.json();
         setProduct(json.data);
+        // eslint-disable-next-line no-unused-vars
       } catch (error) {
-        console.error(error);
+        alert(
+          "Something went wrong while fetching the product. Please try again.",
+        );
       } finally {
         setLoading(false);
       }

@@ -13,9 +13,11 @@ type ProductProps = {
 };
 
 /**
- * Renders a single product card with image, title, description, and price.
- * If a discounted price is available, it is displayed alongside the original price (with line-through)
- * Includes a button that links to the detailed product view.
+ * Renders a single product card with image, title, rating and price, and link to details
+ *
+ * Displays original and discounted prices, if applicable.
+ * Shows star rating or fallback text if unrated.
+ * Includes a button to navigate to the product detail view.
  *
  * @component
  * @param {Object} props
@@ -30,6 +32,7 @@ function Product({ product }: ProductProps) {
       <CardMedia
         component="img"
         height="300"
+        width="200"
         image={product.image.url}
         alt={product.image.alt}
       />

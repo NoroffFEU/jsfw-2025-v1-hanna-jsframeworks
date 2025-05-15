@@ -1,6 +1,12 @@
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Renders the footer section with a contact prompt.
+ *
+ * @component
+ * @returns {JSX.Element} The footer UI element.
+ */
 function Footer() {
   const navigate = useNavigate();
 

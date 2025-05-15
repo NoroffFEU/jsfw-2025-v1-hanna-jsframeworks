@@ -5,7 +5,6 @@ import {
   Box,
   CardMedia,
   CardContent,
-  Divider,
   IconButton,
   Button,
 } from "@mui/material";
@@ -14,21 +13,41 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { DeleteOutlined } from "@mui/icons-material";
 
+/**
+ * Shopping cart component for reviewing cart items,
+ * updating quantities, and proceeding to checkout.
+ *
+ * @component
+ * @returns {JSX.Element} Shopping cart UI.
+ */
 function ShoppingCart() {
   const { cartItems, updateQuantity, removeFromCart, clearCart } = useCart();
   const navigate = useNavigate();
 
+  /**
+   * Calculates the total price of all items in the cart.
+   *
+   * @returns {number} Total price.
+   */
   const calculateTotal = () =>
     cartItems.reduce((acc, { product, quantity }) => {
       const price = product.discountedPrice ?? product.price;
       return acc + price * quantity;
     }, 0);
 
+  /**
+   * Handles removal of an item from the cart.
+   *
+   * @param {string} productId - ID of the product to remove.
+   */
   const handleRemove = (productId: string) => {
     removeFromCart(productId);
     toast.info("Item removed from cart");
   };
 
+  /**
+   * Handles checkout logic and redirects to success page.
+   */
   const handleCheckout = () => {
     toast.success("Checkout was successful! Redirecting....");
     setTimeout(() => {
@@ -132,7 +151,6 @@ function ShoppingCart() {
                   <DeleteOutlined />
                 </IconButton>
               </Box>
-              <Divider sx={{ my: 2 }} />
             </CardContent>
           </Box>
         </Card>
@@ -142,10 +160,29 @@ function ShoppingCart() {
         <Typography variant="h6" sx={{ mb: 1 }}>
           Total: ${calculateTotal().toFixed(2)}
         </Typography>
+
+        <Button
+          variant="outlined"
+          onClick={() => navigate("/")}
+          sx={{
+            mr: 1,
+            mb: 1,
+            color: "#001f3f",
+            borderColor: "#001f3f",
+            backgroundColor: "#ffffff",
+            "&:hover": {
+              backgroundColor: "#aad8ff",
+              borderColor: "#aad8ff",
+            },
+          }}
+        >
+          More Shopping
+        </Button>
         <Button
           variant="contained"
           onClick={handleCheckout}
           sx={{
+            mb: 1,
             backgroundColor: "#001f3f",
             "&:hover": { backgroundColor: "#003366" },
           }}

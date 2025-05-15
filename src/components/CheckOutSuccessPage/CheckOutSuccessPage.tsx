@@ -2,6 +2,12 @@ import { Card, CardContent, Typography, Button, Box } from "@mui/material";
 import { CheckCircleOutline } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Displays a confirmation message after successful checkout, with the option to return to the home page
+ *
+ * @component
+ * @returns {JSX.Element} The checkout success UI.
+ */
 function CheckOutSuccess() {
   const navigate = useNavigate();
   return (
@@ -9,7 +15,7 @@ function CheckOutSuccess() {
       sx={{
         display: "flex",
         justifyContent: "center",
-        mt: 4,
+        m: 4,
       }}
     >
       <Card

@@ -6,6 +6,15 @@ type SearchBarProps = {
   onChange: (value: string) => void;
 };
 
+/**
+ * A reusable search iput for filtering products
+ *
+ * @component
+ * @param {Object}
+ * @param {string} props.value - The current input value
+ * @param {Function} props.onChange - Callback to update the parent component on change
+ * @returns {JSX.Element} A tyled text input field
+ */
 function SearchBar({ value, onChange }: SearchBarProps) {
   return (
     <Box sx={{ maxWidth: 200, mb: 4 }}>

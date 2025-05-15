@@ -8,13 +8,15 @@ import { SearchBar } from "../SearchBar/SearchBar";
 import { Typography, Box } from "@mui/material";
 
 /**
- * Fetches and displays a list of products from the online shop API.
+ * Landing page component that fetches and displays products from the API.
  *
- * Uses useEffect to perform the fetch on mount and stores the products
- * in local state. Passes the data to the ProductsList component for rendering.
+ * Fetches data on mount using useEffect.
+ * Allows users to search for products via the SearchBar component.
+ * Filters products in real time based on search input.
+ * Displays a loader, error state, and empty state as needed.
  *
  * @component
- * @returns {JSX.Element} Page layout containing the product list
+ * @returns {JSX.Element} A full page layout with search and filtered product list
  */
 
 function Products() {
