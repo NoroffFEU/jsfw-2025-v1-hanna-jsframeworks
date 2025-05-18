@@ -1,4 +1,4 @@
-import { Products } from "./components/Products/Products";
+import { Products } from "./components/AllProducts/AllProducts";
 import { ShoppingCart } from "./components/ShoppingCart/ShoppingCartPage";
 import { ContactPage } from "./components/ContactPage/ContactPage";
 import { Header } from "./components/Header/Header";
