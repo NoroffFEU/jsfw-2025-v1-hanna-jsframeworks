@@ -1,5 +1,5 @@
 # Luxo - Modern Lifestyle Webshop 🛍️
-<img width="1" height="1" alt="image" src="https://github.com/user-attachments/assets/3c3df225-d8ec-4ffe-af39-141d4fea3d7d" />
+<img width="1372" height="777" alt="image" src="https://github.com/user-attachments/assets/51030d39-1a82-4cf1-b600-c36956f59c9d" />
 Luxo is a premium online store built with React, Material UI, and TypeScript. It offers an elegant shopping experience for customers looking to buy exclusive products such as headphones, technology, shoes and accessories.
 
 ## Project Description 🌟
