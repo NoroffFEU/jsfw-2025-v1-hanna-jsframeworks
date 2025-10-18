@@ -58,9 +58,10 @@ function Products() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "flex-end",
           flexWrap: "wrap",
           gap: 1,
+          mb: 2,
         }}
       >
         <Box>
