@@ -1,4 +1,5 @@
 import {
+  Box,
   Card,
   CardMedia,
   CardContent,
@@ -29,13 +30,15 @@ function Product({ product }: ProductProps) {
 
   return (
     <Card>
-      <CardMedia
-        component="img"
-        height="300"
-        width="200"
-        image={product.image.url}
-        alt={product.image.alt}
-      />
+      <Box>
+        <CardMedia
+          component="img"
+          height="300"
+          width="200"
+          image={product.image.url}
+          alt={product.image.alt}
+        />
+      </Box>
       <CardContent sx={{ height: 200 }}>
         <Typography variant="h6">{product.title}</Typography>
         <Typography variant="body1" color="text.secondary">
