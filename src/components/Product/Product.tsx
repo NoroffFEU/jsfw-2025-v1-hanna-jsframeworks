@@ -41,7 +41,9 @@ function Product({ product }: ProductProps) {
         }}
       />
       <CardContent sx={{ height: 200 }}>
-        <Typography variant="h6">{product.title}</Typography>
+        <Typography component="h3" variant="h6">
+          {product.title}
+        </Typography>
         <Typography variant="body1" color="text.secondary">
           {hasRating ? `${product.rating.toFixed(1)} / 5 ⭐` : "No ratings yet"}
         </Typography>

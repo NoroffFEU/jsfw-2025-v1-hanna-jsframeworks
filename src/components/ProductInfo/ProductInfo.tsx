@@ -68,7 +68,9 @@ function ProductInfo({ product }: Props) {
         />
 
         <CardContent sx={{ flex: 1 }}>
-          <Typography variant="h4">{product.title}</Typography>
+          <Typography component="h2" variant="h4">
+            {product.title}
+          </Typography>
           {product.tags.length > 0 && (
             <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: "wrap" }}>
               {product.tags.map((tag) => (
