@@ -58,8 +58,9 @@ function ProductInfo({ product }: Props) {
         <CardMedia
           component="img"
           sx={{
-            width: { xs: "100%", md: 400 },
-            height: { xs: 300, md: "auto" },
+            width: { xs: "100%", md: 420 },
+            aspectRatio: { xs: "8 / 7", sm: "8 / 7", md: "unset" },
+            height: { xs: "auto", md: "auto" },
             objectFit: "cover",
           }}
           image={product.image.url}
