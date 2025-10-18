@@ -58,13 +58,14 @@ function Products() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "flex-end",
           flexWrap: "wrap",
           gap: 1,
+          mb: 2,
         }}
       >
         <Box>
-          <Typography variant="h6" sx={{ color: "#001f3f" }}>
+          <Typography variant="h5" component="h2" sx={{ color: "#001f3f" }}>
             Showing Products
           </Typography>
         </Box>

@@ -58,8 +58,9 @@ function ProductInfo({ product }: Props) {
         <CardMedia
           component="img"
           sx={{
-            width: { xs: "100%", md: 400 },
-            height: { xs: 300, md: "auto" },
+            width: { xs: "100%", md: 420 },
+            aspectRatio: { xs: "8 / 7", sm: "8 / 7", md: "unset" },
+            height: { xs: "auto", md: "auto" },
             objectFit: "cover",
           }}
           image={product.image.url}
@@ -67,7 +68,9 @@ function ProductInfo({ product }: Props) {
         />
 
         <CardContent sx={{ flex: 1 }}>
-          <Typography variant="h4">{product.title}</Typography>
+          <Typography component="h2" variant="h4">
+            {product.title}
+          </Typography>
           {product.tags.length > 0 && (
             <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: "wrap" }}>
               {product.tags.map((tag) => (

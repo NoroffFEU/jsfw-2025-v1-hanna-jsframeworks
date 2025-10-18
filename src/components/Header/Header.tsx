@@ -22,10 +22,13 @@ function Header() {
 
   return (
     <AppBar position="static" sx={{ backgroundColor: "#001f3f" }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Toolbar
+        sx={{ display: "flex", justifyContent: "space-between", pt: 2, pb: 2 }}
+      >
         <Box component={Link} to="/" sx={{ textDecoration: "none" }}>
           <Typography
-            variant="h5"
+            component="h1"
+            variant="h4"
             sx={{
               p: 0.8,
               color: "white",
@@ -51,7 +54,7 @@ function Header() {
           }}
         >
           <Badge badgeContent={totalQuantity}>
-            <ShoppingCartIcon />
+            <ShoppingCartIcon fontSize="large" />
           </Badge>
         </IconButton>
       </Toolbar>

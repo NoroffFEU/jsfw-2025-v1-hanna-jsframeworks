@@ -21,12 +21,13 @@ function Footer() {
         mt: 4,
       }}
     >
-      <Typography>Have any questions?</Typography>
+      <Typography fontSize={22}>Have any questions?</Typography>
       <Button
         onClick={() => navigate("/contact")}
         variant="text"
         sx={{
           color: "#ffffff",
+          fontSize: 20,
           textDecoration: "underline",
           "&:hover": {
             color: "#aad8ff",

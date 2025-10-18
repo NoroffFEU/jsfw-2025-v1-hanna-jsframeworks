@@ -1,4 +1,5 @@
-import { Box, TextField } from "@mui/material";
+import { Box, TextField, InputAdornment } from "@mui/material";
+import { SearchOutlined } from "@mui/icons-material";
 
 type SearchBarProps = {
   value: string;
@@ -17,18 +18,33 @@ type SearchBarProps = {
  */
 function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <Box sx={{ maxWidth: 200, mb: 4 }}>
+    <Box sx={{ maxWidth: 200 }}>
       <TextField
         fullWidth
-        label="Search..."
-        variant="outlined"
+        size="small"
+        margin="dense"
+        placeholder="Search products…"
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        variant="outlined"
+        inputProps={{ "aria-label": "Search products" }}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchOutlined sx={{ color: "#001f3f" }} fontSize="small" />
+            </InputAdornment>
+          ),
+        }}
         sx={{
+          "& .MuiInputBase-input": { color: "#001f3f" },
+          "& .MuiInputBase-input::placeholder": {
+            color: "#001f3f",
+            opacity: 1,
+          },
           "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "#001f3f",
-            },
+            "& fieldset": { borderColor: "#001f3f" },
+            "&:hover fieldset": { borderColor: "#001f3f" },
+            "&.Mui-focused fieldset": { borderColor: "#001f3f" },
           },
         }}
       />
